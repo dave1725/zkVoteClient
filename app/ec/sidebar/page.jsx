@@ -7,33 +7,31 @@ import { client } from '../client/page';
 
 const Sidebar = () => {
     const pathName = usePathname();
-    console.log(pathName);
 
     const menuItems = [
-        {name:"BOOTHS",path:"/ec/booths"},
-        {name:"CONTROLS",path:"/ec/controls"},
-        {name:"CANDIDATES",path:"/ec/candidates"},
-        {name:"ANALYTICS",path:"/ec/analytics"},
+        { name: "BOOTHS", path: "/ec/booths" },
+        { name: "CONTROLS", path: "/ec/controls" },
+        { name: "CANDIDATES", path: "/ec/candidates" },
+        { name: "ANALYTICS", path: "/ec/analytics" },
     ];
 
     return (
-        <>
-            <div className="fixed flex bg-red-300 w-[300] h-[100vh] justify-center text-center">
-                <div className="my-[50]">
-                    <h1><b>zkVOTE</b></h1>
-                    <ul className="py-[50px]">
-                        <ConnectButton client={client}/>
-                        {menuItems.map((item,index)=>(
-                            <li key={item.path} className={`py-[10] my-[10] bg-white w-[200] text-center h-[50] cursor-pointer hover:translate-y-1
-                            ${pathName === item.path ? "bg-black text-white" : ""}`}>
-                                <Link href={item.path}>{item.name}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+        <div className="fixed flex bg-red-300 w-[300px] h-screen justify-center text-center">
+            <div className="my-[50px]">
+                <h1 className="text-xl font-bold">zkVOTE</h1>
+                <ul className="py-[50px] space-y-2">
+                    <ConnectButton client={client} />
+                    {menuItems.map((item, index) => (
+                        <li key={index} className={`py-2 my-2 w-[200px] text-center h-[50px] cursor-pointer 
+                            transition-all duration-300 rounded-lg 
+                            ${pathName === item.path ? "bg-black text-white" : "bg-white text-black hover:bg-gray-200"}`}>
+                            <Link href={item.path}>{item.name}</Link>
+                        </li>
+                    ))}
+                </ul>
             </div>
-        </>
-    )
+        </div>
+    );
 }
 
 export default Sidebar;
